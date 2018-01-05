@@ -1,6 +1,5 @@
 require 'bootstrap'
 require 'booty-rails/form_builder'
-require 'booty-rails/helper'
 
 module BootyRails
   module Rails
@@ -10,5 +9,11 @@ module BootyRails
 end
 
 ActiveSupport.on_load(:action_view) do
-  include BootyRails::Helper
+
+  def form_for(object, options = {}, &block)
+    puts "Helper::form_for"
+    ActionView::Base.field_error_proc = proc { |input, instance| input }
+    super(object, options.reverse_merge!({builder: BootyRails::FormBuilder}), &block)
+  end
+
 end
