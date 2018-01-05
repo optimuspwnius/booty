@@ -1,6 +1,5 @@
-require 'bootstrap'
 
-#require 'booty-rails/engine'
+require 'booty-rails/engine'
 
 module BootyRails
 
