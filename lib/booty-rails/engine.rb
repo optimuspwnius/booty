@@ -1,4 +1,3 @@
-require 'bootstrap'
 
 module BootyRails
   class Engine < ::Rails::Engine
