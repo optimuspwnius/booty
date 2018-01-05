@@ -1,5 +1,5 @@
 require 'bootstrap'
-#require 'booty-rails/engine'
+require 'booty-rails/form_builder'
 
 module BootyRails
   module Rails
