@@ -1,4 +1,14 @@
 module BootyRails
+
+  def booty(object, options = {}, &block)
+    options.reverse_merge!({builder: BootyRails::FormBuilder})
+
+    ActionView::Base.field_error_proc = proc { |input, instance| input }
+
+    form_for(object, options, &block)
+
+  end
+
   class FormBuilder < ActionView::Helpers::FormBuilder
     #extend BootstrapForm::Aliasing
     #include BootstrapForm::Helpers::Bootstrap
@@ -10,14 +20,7 @@ module BootyRails
     end
 
 
-    def form_for(object, options = {}, &block)
-      options.reverse_merge!({builder: BootyRails::FormBuilder})
 
-        ActionView::Base.field_error_proc = proc { |input, instance| input }
-
-        super(object, options, &block)
-
-    end
 
   end
 end
