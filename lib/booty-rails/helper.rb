@@ -15,9 +15,7 @@ module BootyRails
       puts 'Options:'
       puts options
 
-      super(model: model, scope: scope, url: url, format: format, **options) do
-        block.call
-      end
+      super(model: model, scope: scope, url: url, format: format, **options, &block)
 
     end
 
