@@ -10,6 +10,7 @@ module BootyRails
     end
 
     def email_field(name, **options, &block)
+      puts 'FormBuilder::email_field'
       super(name, options)
     end
 
