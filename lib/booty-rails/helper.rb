@@ -15,6 +15,20 @@ module BootyRails
       puts 'Options:'
       puts options
 
+      super(model: model, scope: scope, url: url, format: format, options) do
+        capture(&Proc.new)
+      end
+
+    end
+
+    def form_with_works(model: nil, scope: nil, url: nil, format: nil, **options)
+      puts "Helper::form_with"
+      ActionView::Base.field_error_proc = proc { |input, instance| input }
+
+      options.reverse_merge!({builder: BootyRails::FormBuilder})
+      puts 'Options:'
+      puts options
+
       model   = model.last if model.is_a?(Array)
       scope ||= model_name_from_record_or_class(model).param_key
       builder = instantiate_builder(scope, model, options)
