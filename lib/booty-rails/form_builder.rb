@@ -16,7 +16,7 @@ module BootyRails
 
     def fieldset(name, &block)
       puts 'FormBuilder::fieldset'
-      yield
+      capture(&block)
     end
 
   end
