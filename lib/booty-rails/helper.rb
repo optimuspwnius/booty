@@ -16,7 +16,7 @@ module BootyRails
       puts options
 
       super(model: model, scope: scope, url: url, format: format, **options) do
-        Proc.new.call
+        &Proc.new
       end
 
     end
