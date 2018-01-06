@@ -14,9 +14,14 @@ module BootyRails
       options.reverse_merge!({builder: BootyRails::FormBuilder})
       puts 'Options:'
       puts options
+      scope   = nil
+      model   = options[:model].last if options[:model].is_a?(Array)
+      scope ||= model_name_from_record_or_class(model).param_key
+      builder = instantiate_builder(scope, model, options)
+      output  = capture(builder, &Proc.new)
 
       super(options) do
-        capture(&Proc.new)
+        output
       end
 
     end
