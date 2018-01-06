@@ -14,5 +14,10 @@ module BootyRails
       super(name, options)
     end
 
+    def fieldset(name, &block)
+      puts 'FormBuilder::fieldset'
+      
+    end
+
   end
 end
