@@ -68,7 +68,7 @@ module BootyRails
         label + control
       end
 
-      content_tag(:div, label + control, "form-group #{options[:form_group_class]}")
+      content_tag(:div, label + control, class: "form-group #{options[:form_group_class]}")
     end
 
     def has_error?(name)
