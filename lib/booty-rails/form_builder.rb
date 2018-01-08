@@ -30,8 +30,8 @@ module BootyRails
           skip_form_group: false,
           has_errors: false,
           is_addon: false,
-          label_class: [],
-          form_group_class: [],
+          label_class: '',
+          form_group_class: '',
           errors: []
       }
     end
