@@ -19,21 +19,43 @@ module BootyRails
       capture(&block)
     end
 
-    def input_options(options)
-      puts 'FormBuilder::input_options'
-      puts options
-      options
+    def default_options
+      {
+          layout: :horizontal,
+          input_only: false,
+          label_only: false,
+          form_group_only: false,
+          skip_input: false,
+          skip_label: false,
+          skip_form_group: false,
+          has_errors: false,
+          is_addon: false,
+          label_class: [],
+          input_class: [],
+          form_group_class: [],
+          errors: []
+      }
+    end
+
+    def control_options(options)
+      options.to_options!
+      puts 'FormBuilder::control_options'
+      _options = options.except(default_options)
+      options = options.except(_options)
+      puts _options
+      _options
     end
 
     def text_field(name, **options, &block)
       puts "FormBuilder::text_field: #{name}"
-      form_group(name, super(name, input_options(options)), options)
+      form_group(name, super(name, control_options(options)), options)
     end
 
     def form_group(name, control, options)
       puts 'FormBuilder::form_group'
+      puts 'FormBuilder::form_group:options'
+      puts options
       label = label(object_name)
-
       content_tag(:div, label + control, options)
     end
 
