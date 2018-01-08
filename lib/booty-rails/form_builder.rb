@@ -22,16 +22,15 @@ module BootyRails
     def default_options
       {
           layout: :horizontal,
-          input_only: false,
+          control_only: false,
           label_only: false,
           form_group_only: false,
-          skip_input: false,
+          skip_control: false,
           skip_label: false,
           skip_form_group: false,
           has_errors: false,
           is_addon: false,
           label_class: [],
-          input_class: [],
           form_group_class: [],
           errors: []
       }
@@ -56,8 +55,20 @@ module BootyRails
       puts 'FormBuilder::form_group'
       puts 'FormBuilder::form_group:options'
       puts options
-      label = label(object_name)
-      content_tag(:div, label + control, options)
+      label = label(object_name, class: options[:label_class]) unless options[:skip_label]
+      control = nil if options[:skip_control]
+
+      if options[:control_only]
+        control
+      elsif options[:label_only]
+        label
+      elsif options[:form_group_only]
+        content_tag(:div, nil, class: "form-group #{options[:form_group_class]}")
+      elsif options[:skip_form_group]
+        label + control
+      end
+
+      content_tag(:div, label + control, "form-group #{options[:form_group_class]}")
     end
 
     def has_error?(name)
