@@ -32,6 +32,8 @@ module BootyRails
 
     def form_group(name, control, options)
       puts 'FormBuilder::form_group'
+      label = label(object_name)
+
       content_tag(:div, label + control, options)
     end
 
