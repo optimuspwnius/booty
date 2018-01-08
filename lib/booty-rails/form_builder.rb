@@ -41,7 +41,7 @@ module BootyRails
       options.to_options!
       puts 'FormBuilder::control_options'
       _options = options.except(default_options)
-      default_options.reverse_merge!(options)
+      options.reverse_merge!(default_options)
       puts _options
       _options
     end
