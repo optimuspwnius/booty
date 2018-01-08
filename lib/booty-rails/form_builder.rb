@@ -41,7 +41,7 @@ module BootyRails
       options.to_options!
       puts 'FormBuilder::control_options'
       _options = options.except(default_options)
-      options = options.except(_options)
+      options.except!(_options)
       puts _options
       _options
     end
